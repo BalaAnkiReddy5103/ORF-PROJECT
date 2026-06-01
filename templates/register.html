@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel form-wrap">
+    <h2>User Registration</h2>
+    <form method="post" class="form grid two">
+        <label>Full Name
+            <input type="text" name="full_name" required />
+        </label>
+        <label>Email
+            <input type="email" name="email" required />
+        </label>
+        <label>Username
+            <input type="text" name="username" required />
+        </label>
+        <label>Phone
+            <input type="text" name="phone" required />
+        </label>
+        <label>Organization
+            <input type="text" name="organization" required />
+        </label>
+        <label>Password
+            <input type="password" name="password" required />
+        </label>
+        <button class="full" type="submit">Register</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel form-wrap">
+    <h2>Admin Prediction</h2>
+    <form method="post" class="form">
+        <label>Model
+            <select name="model_id" required>
+                {% for row in trained_models %}
+                    <option value="{{ row.id }}">{{ row.algorithm_name }} ({{ row.trained_at }})</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Job Title<input name="title" required /></label>
+        <label>Description<textarea name="description" rows="4" required></textarea></label>
+        <label>Requirements<textarea name="requirements" rows="3"></textarea></label>
+        <label>Benefits<textarea name="benefits" rows="3"></textarea></label>
+        <button type="submit">Predict</button>
+    </form>
+    {% if result %}
+        <div class="result-box">
+            <h3>Result: {{ result.label }}</h3>
+            <p>Confidence: {{ result.confidence }}</p>
+            <p>Model: {{ result.algorithm }}</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
+

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="grid two">
+    <div class="card stat"><h3>My Predictions</h3><p>{{ own_preds }}</p></div>
+    <div class="card stat"><h3>Role</h3><p>End User</p></div>
+</section>
+<section class="panel">
+    <h2>User Dashboard</h2>
+    <div class="actions">
+        <a class="btn" href="{{ url_for('user_predict') }}"><i class="fa-solid fa-vial-circle-check"></i> Test Job Posting</a>
+        <a class="btn" href="{{ url_for('user_reports') }}"><i class="fa-solid fa-chart-line"></i> View Reports</a>
+        <a class="btn" href="{{ url_for('user_logs') }}"><i class="fa-solid fa-clock-rotate-left"></i> Test Logs</a>
+    </div>
+    <canvas id="barChart" height="110"></canvas>
+    <canvas id="lineChart" height="110"></canvas>
+</section>
+<section class="panel">
+    <h3>Recent Tests</h3>
+    <table>
+        <tr><th>Label</th><th>Score</th><th>Date</th></tr>
+        {% for row in rows %}
+            <tr><td>{{ row.prediction_label }}</td><td>{{ '%.4f'|format(row.confidence_score or 0) }}</td><td>{{ row.created_at }}</td></tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

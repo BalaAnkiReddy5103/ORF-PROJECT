@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ORF Detection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="{{ url_for('static', filename='js/charts.js') }}"></script>
+</head>
+<body>
+<div class="overlay"></div>
+<nav class="navbar">
+    <div class="brand">ORF Detection</div>
+    <div class="links">
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if session.get('user_id') %}
+            {% if session.get('role') == 'admin' %}
+                <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+                <a href="{{ url_for('admin_reports') }}">Reports</a>
+                <a href="{{ url_for('admin_logs') }}">Logs</a>
+            {% else %}
+                <a href="{{ url_for('user_dashboard') }}">User Dashboard</a>
+                <a href="{{ url_for('user_reports') }}">Reports</a>
+                <a href="{{ url_for('user_logs') }}">Logs</a>
+                <a href="{{ url_for('user_profile') }}">Profile</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </div>
+</nav>
+<main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

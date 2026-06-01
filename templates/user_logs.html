@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+    <h2>Test Log History</h2>
+    <table>
+        <tr><th>Model ID</th><th>Result</th><th>Confidence</th><th>Timestamp</th></tr>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row.model_result_id }}</td>
+                <td>{{ row.prediction_label }}</td>
+                <td>{{ '%.4f'|format(row.confidence_score or 0) }}</td>
+                <td>{{ row.created_at }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

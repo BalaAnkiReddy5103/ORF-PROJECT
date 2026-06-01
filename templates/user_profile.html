@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+    <h2>User Profile</h2>
+    <div class="grid two">
+        <div class="card"><strong>Name:</strong> {{ user.full_name }}</div>
+        <div class="card"><strong>Email:</strong> {{ user.email }}</div>
+        <div class="card"><strong>Username:</strong> {{ user.username }}</div>
+        <div class="card"><strong>Phone:</strong> {{ user.phone }}</div>
+        <div class="card"><strong>Organization:</strong> {{ user.organization }}</div>
+        <div class="card"><strong>Created:</strong> {{ user.created_at }}</div>
+    </div>
+</section>
+{% endblock %}
+

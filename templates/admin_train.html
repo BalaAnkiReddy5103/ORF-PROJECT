@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel form-wrap">
+    <h2>Model Training</h2>
+    <form method="post" class="form">
+        <label>Select Algorithm
+            <select name="algorithm" required>
+                {% for key, label in algorithms.items() %}
+                    <option value="{{ key }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button type="submit">Start Training</button>
+    </form>
+</section>
+{% endblock %}
+

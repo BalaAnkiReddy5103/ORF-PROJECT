@@ -1,0 +1,184 @@
+:root {
+  --bg-main: #081f2d;
+  --bg-card: rgba(7, 30, 43, 0.78);
+  --brand: #00c2a8;
+  --brand-alt: #ff6b35;
+  --text: #f2f6f8;
+  --muted: #c1ced6;
+  --warn: #ffc857;
+  --danger: #ff4d6d;
+  --ok: #47d16c;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-image:
+    linear-gradient(120deg, rgba(2, 20, 30, 0.9), rgba(4, 31, 42, 0.75)),
+    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0, 194, 168, 0.22), transparent 35%),
+              radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.18), transparent 32%);
+  pointer-events: none;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: rgba(5, 16, 26, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.links a {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: 0.2s;
+}
+
+.links a:hover {
+  background: rgba(0, 194, 168, 0.2);
+  color: #fff;
+}
+
+.container {
+  width: min(1150px, 92vw);
+  margin: 24px auto 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.panel,
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
+.hero h1 { margin-top: 0; }
+.grid { display: grid; gap: 14px; }
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.stat p {
+  font-size: 1.8rem;
+  margin: 0;
+  color: var(--brand);
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.form label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+}
+
+input, select, textarea, button {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+select option {
+  color: #111;
+}
+
+button, .btn {
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--brand), #00e3c4);
+  border: none;
+  color: #08232f;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.btn { padding: 10px 14px; border-radius: 10px; }
+.btn i { margin-right: 6px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+th, td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+th { color: var(--brand-alt); }
+.flash {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+.flash.success { background: rgba(71, 209, 108, 0.2); border-color: var(--ok); }
+.flash.danger { background: rgba(255, 77, 109, 0.2); border-color: var(--danger); }
+.flash.warning { background: rgba(255, 200, 87, 0.2); border-color: var(--warn); }
+
+.result-box {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 10px;
+  background: rgba(0, 194, 168, 0.15);
+  border: 1px solid rgba(0, 194, 168, 0.6);
+}
+
+.chips span {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 107, 53, 0.2);
+  border: 1px solid rgba(255, 107, 53, 0.5);
+}
+
+.hint { color: var(--muted); }
+.full { grid-column: 1 / -1; }
+
+@media (max-width: 900px) {
+  .grid.two, .grid.three { grid-template-columns: 1fr; }
+  .navbar { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .links a { margin-left: 0; margin-right: 8px; }
+}

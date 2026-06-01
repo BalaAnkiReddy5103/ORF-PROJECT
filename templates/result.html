@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+    <h2>Prediction Result</h2>
+    {% if result %}
+        <div class="result-box">
+            <h3>{{ result.label }}</h3>
+            <p>Confidence: {{ result.confidence }}</p>
+            <p>Model: {{ result.algorithm }}</p>
+        </div>
+    {% else %}
+        <p>No result available.</p>
+    {% endif %}
+</section>
+{% endblock %}

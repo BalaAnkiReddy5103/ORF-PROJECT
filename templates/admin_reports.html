@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+    <h2>Performance Reports</h2>
+    <canvas id="barChart" height="110"></canvas>
+    <canvas id="lineChart" height="110"></canvas>
+    <table>
+        <tr><th>Algorithm</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>Class Dist.</th><th>Model File</th><th>Date</th></tr>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row.algorithm_name }}</td>
+                <td>{{ '%.4f'|format(row.accuracy) }}</td>
+                <td>{{ '%.4f'|format(row.precision_score) }}</td>
+                <td>{{ '%.4f'|format(row.recall_score) }}</td>
+                <td>{{ '%.4f'|format(row.f1_score) }}</td>
+                <td>{{ row.class_distribution }}</td>
+                <td>{{ row.model_path }}</td>
+                <td>{{ row.trained_at }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}
+

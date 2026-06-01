@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel hero">
+    <h1>Online Recruitment Fraud (ORF) Detection Using Deep Learning Approaches</h1>
+    <p>Detect fake job postings using configurable BERT/RoBERTa-style training pipelines, performance analytics, and role-based dashboards.</p>
+    <div class="grid two">
+        <div class="card">
+            <h3>Admin Workflow</h3>
+            <ul>
+                <li>Upload datasets</li>
+                <li>Train models with algorithm selection</li>
+                <li>Track metrics and logs</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>User Workflow</h3>
+            <ul>
+                <li>Register and login</li>
+                <li>Run fake/real predictions</li>
+                <li>View reports and test history</li>
+            </ul>
+        </div>
+    </div>
+    <div class="chips">
+        {% for key, label in algorithms.items() %}
+            <span>{{ label }}</span>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

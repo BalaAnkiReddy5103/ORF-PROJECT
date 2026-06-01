@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+    <h2>Performance Results</h2>
+    <canvas id="barChart" height="110"></canvas>
+    <canvas id="lineChart" height="110"></canvas>
+</section>
+<section class="panel">
+    <h3>Training Metrics</h3>
+    <table>
+        <tr><th>Algorithm</th><th>Acc</th><th>Prec</th><th>Rec</th><th>F1</th><th>Date</th></tr>
+        {% for row in trainings %}
+            <tr>
+                <td>{{ row.algorithm_name }}</td>
+                <td>{{ '%.4f'|format(row.accuracy) }}</td>
+                <td>{{ '%.4f'|format(row.precision_score) }}</td>
+                <td>{{ '%.4f'|format(row.recall_score) }}</td>
+                <td>{{ '%.4f'|format(row.f1_score) }}</td>
+                <td>{{ row.trained_at }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+<section class="panel">
+    <h3>My Test History</h3>
+    <table>
+        <tr><th>Prediction</th><th>Confidence</th><th>Date</th></tr>
+        {% for row in own_predictions %}
+            <tr><td>{{ row.prediction_label }}</td><td>{{ '%.4f'|format(row.confidence_score or 0) }}</td><td>{{ row.created_at }}</td></tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}
+

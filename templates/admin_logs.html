@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+    <h2>Distributed Training Logs</h2>
+    <table>
+        <tr><th>Actor</th><th>Actor ID</th><th>Action</th><th>Time</th></tr>
+        {% for row in rows %}
+            <tr><td>{{ row.actor_role }}</td><td>{{ row.actor_id }}</td><td>{{ row.action }}</td><td>{{ row.created_at }}</td></tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}
+

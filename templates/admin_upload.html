@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel form-wrap">
+    <h2>Upload Dataset</h2>
+    <form method="post" enctype="multipart/form-data" class="form">
+        <label>Select CSV
+            <input type="file" name="dataset" accept=".csv" required />
+        </label>
+        <button type="submit">Upload</button>
+    </form>
+</section>
+<section class="panel">
+    <h3>Uploaded Datasets</h3>
+    <table>
+        <tr><th>File</th><th>Path</th><th>Uploaded At</th></tr>
+        {% for row in rows %}
+            <tr><td>{{ row.filename }}</td><td>{{ row.path }}</td><td>{{ row.uploaded_at }}</td></tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="grid three">
+    <div class="card stat"><h3>Total Users</h3><p>{{ users }}</p></div>
+    <div class="card stat"><h3>Trainings</h3><p>{{ trainings }}</p></div>
+    <div class="card stat"><h3>Predictions</h3><p>{{ predictions }}</p></div>
+</section>
+<section class="panel">
+    <h2>Admin Dashboard</h2>
+    <div class="actions">
+        <a class="btn" href="{{ url_for('admin_upload') }}"><i class="fa-solid fa-file-arrow-up"></i> Upload Dataset</a>
+        <a class="btn" href="{{ url_for('admin_train') }}"><i class="fa-solid fa-gears"></i> Model Training</a>
+        <a class="btn" href="{{ url_for('admin_predict') }}"><i class="fa-solid fa-magnifying-glass-chart"></i> Run Prediction</a>
+    </div>
+    <canvas id="barChart" height="110"></canvas>
+    <canvas id="lineChart" height="110"></canvas>
+</section>
+{% if dataset_info %}
+<section class="grid three">
+    <div class="card stat"><h3>Dataset Rows</h3><p>{{ dataset_info.rows }}</p></div>
+    <div class="card stat"><h3>Real Jobs</h3><p>{{ dataset_info.real_jobs }}</p></div>
+    <div class="card stat"><h3>Fake Jobs</h3><p>{{ dataset_info.fake_jobs }}</p></div>
+</section>
+<section class="grid two">
+    <div class="card"><strong>Total Columns:</strong> {{ dataset_info.columns }}</div>
+    <div class="card"><strong>Total Missing Values:</strong> {{ dataset_info.missing_values }}</div>
+</section>
+{% endif %}
+<section class="panel">
+    <h3>Recent Training Results</h3>
+    <table>
+        <tr><th>Algorithm</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>Date</th></tr>
+        {% for row in latest %}
+            <tr>
+                <td>{{ row.algorithm_name }}</td>
+                <td>{{ '%.4f'|format(row.accuracy) }}</td>
+                <td>{{ '%.4f'|format(row.precision_score) }}</td>
+                <td>{{ '%.4f'|format(row.recall_score) }}</td>
+                <td>{{ '%.4f'|format(row.f1_score) }}</td>
+                <td>{{ row.trained_at }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

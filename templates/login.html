@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel form-wrap">
+    <h2>Login</h2>
+    <form method="post" class="form">
+        <label>Role
+            <select name="role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </label>
+        <label>Username or Email
+            <input type="text" name="username" required />
+        </label>
+        <label>Password
+            <input type="password" name="password" required />
+        </label>
+        <button type="submit">Login</button>
+    </form>
+    <p class="hint">Default admin credentials: <strong>admin / admin123</strong></p>
+</section>
+{% endblock %}
